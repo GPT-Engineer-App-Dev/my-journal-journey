@@ -1,5 +1,5 @@
 import { Container, Text, VStack, Heading, Box, Image, HStack, Link, Button, useColorModeValue } from "@chakra-ui/react";
-import { FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaTwitter, FaGithub, FaLinkedin, FaTrash } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -10,6 +10,12 @@ const Index = () => {
     const storedPosts = JSON.parse(localStorage.getItem("posts")) || [];
     setPosts(storedPosts);
   }, []);
+
+  const handleDelete = (index) => {
+    const updatedPosts = posts.filter((_, i) => i !== index);
+    setPosts(updatedPosts);
+    localStorage.setItem("posts", JSON.stringify(updatedPosts));
+  };
 
   return (
     <Container centerContent maxW="container.md" py={10} bg={useColorModeValue("gray.50", "gray.900")}>
@@ -29,7 +35,12 @@ const Index = () => {
           <VStack spacing={4} align="stretch">
             {posts.map((post, index) => (
               <Box key={index} p={5} shadow="md" borderWidth="1px" borderRadius="md">
+                <HStack justify="space-between">
                 <Heading fontSize="xl">{post.title}</Heading>
+                <Button colorScheme="red" size="sm" onClick={() => handleDelete(index)}>
+                  <FaTrash />
+                </Button>
+              </HStack>
                 <Text mt={4}>{post.content}</Text>
                 {post.image && <Image src={post.image} alt={post.title} borderRadius="md" mt={4} />}
               </Box>
