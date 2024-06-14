@@ -1,4 +1,4 @@
-import { Container, Text, VStack, Heading, Box, Image, HStack, Link, Button } from "@chakra-ui/react";
+import { Container, Text, VStack, Heading, Box, Image, HStack, Link, Button, useColorModeValue } from "@chakra-ui/react";
 import { FaTwitter, FaGithub, FaLinkedin } from "react-icons/fa";
 import { Link as RouterLink } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ const Index = () => {
   }, []);
 
   return (
-    <Container centerContent maxW="container.md" py={10}>
+    <Container centerContent maxW="container.md" py={10} bg={useColorModeValue("gray.50", "gray.900")}>
       <VStack spacing={8} align="stretch">
         <Box textAlign="center">
           <Heading as="h1" size="2xl" mb={4}>Welcome to My Blog</Heading>

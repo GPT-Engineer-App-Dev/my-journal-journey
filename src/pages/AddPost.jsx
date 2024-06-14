@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container, Heading, VStack, FormControl, FormLabel, Input, Textarea, Button, Image } from "@chakra-ui/react";
+import { Container, Heading, VStack, FormControl, FormLabel, Input, Textarea, Button, Image, useColorModeValue } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 const AddPost = () => {
@@ -21,7 +21,7 @@ const AddPost = () => {
   };
 
   return (
-    <Container centerContent maxW="container.md" py={10}>
+    <Container centerContent maxW="container.md" py={10} bg={useColorModeValue("gray.50", "gray.900")}>
       <VStack spacing={8} align="stretch">
         <Heading as="h1" size="2xl" mb={4}>Add New Post</Heading>
         <form onSubmit={handleSubmit}>
